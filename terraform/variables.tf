@@ -19,7 +19,7 @@ variable "auth0_client_secret" {
 variable "api_access_token_lifetime" {
     description = "API access token lifetime"
     type        = number  
-    default     = 86401 # 24 hours
+    default     = 86400 # 24 hours
 }
 
 # TODO: Consider removing the default values for `resource_api_name` 
