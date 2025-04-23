@@ -24,15 +24,15 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: ${{ env.TERRAFORM_VERSION }}
-          terraform_wrapper: true
-      
-      - name: Validate Terraform
-        run: terraform validate
-          
+          terraform_wrapper: true    
+                
       - name: Initialize Terraform
         run: terraform init
         env:
           TF_LOG: ${{ env.TF_LOG_LEVEL }}
+
+      - name: Validate Terraform
+        run: terraform validate
 
       # The `terraform import` step in the workflow assumes the resource already exists. 
       # If this is not always the case, add a conditional check
