@@ -17,4 +17,5 @@ resource "auth0_resource_server" "employee_management_api" {
   name            = "EmployeeManagementAPI"
   identifier      = "EmployeeManagementAPI"
   token_lifetime = 86400
+  skip_consent_for_verifiable_first_party_clients = true
 }
