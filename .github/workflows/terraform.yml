@@ -20,12 +20,18 @@ jobs:
           echo "AUTH0_DOMAIN=${{ secrets.AUTH0_DOMAIN }}" >> $GITHUB_ENV
           echo "AUTH0_CLIENT_ID=${{ secrets.AUTH0_CLIENT_ID }}" >> $GITHUB_ENV
           echo "AUTH0_CLIENT_SECRET=${{ secrets.AUTH0_CLIENT_SECRET }}" >> $GITHUB_ENV  
+      
+      - name: Change Directory to Terraform
+        run: cd terraform
           
       - name: Initialize Terraform
         run: terraform init
+        working-directory: terraform
 
       - name: Terraform Plan
         run: terraform plan
+        working-directory: terraform
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
+        working-directory: terraform
