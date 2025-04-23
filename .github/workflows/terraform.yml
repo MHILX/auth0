@@ -11,7 +11,7 @@ env:
   TERRAGRUNT_VERSION: "latest"
   TERRAFORM_WORKING_DIR: './terraform'
   TF_LOG_LEVEL: "DEBUG"
-  RESOURCE_IDENTIFIER: "EmployeeManagementAPI"
+  AUTH0_RESOURCE_IDENTIFIER: "EmployeeManagementAPI"
 
 jobs:
   terraform:
@@ -40,7 +40,7 @@ jobs:
       # The `terraform import` step in the workflow assumes the resource already exists. 
       # If this is not always the case, add a conditional check
       - name: Import Existing Resources        
-        run: terraform import auth0_resource_server.employee_management_api ${{ env.RESOURCE_IDENTIFIER }}
+        run: terraform import auth0_resource_server.employee_management_api ${{ env.AUTH0_RESOURCE_IDENTIFIER }}
         env:
           TF_VAR_auth0_domain: ${{ secrets.AUTH0_DOMAIN }}
           TF_VAR_auth0_client_id: ${{ secrets.AUTH0_CLIENT_ID }}
