@@ -13,7 +13,7 @@ provider "auth0" {
     client_secret = var.auth0_client_secret
 }
 
-resource "auth0_api" "employee_management_api" {
+resource "auth0_resource_server" "employee_management_api" {
   name            = "EmployeeManagementAPI"
   identifier      = "EmployeeManagementAPI"
   token_lifetime = 86400
