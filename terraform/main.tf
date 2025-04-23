@@ -2,9 +2,7 @@ terraform {
   required_providers {
     auth0 = {
       source  = "auth0/auth0"
-      # TODO: Consider pinning it to a specific version (e.g., `~> 1.16.0`) 
-      # to avoid unexpected breaking changes in future releases.
-      version = ">= 1.16.0" 
+      version = "~> 1.16.0" 
     }
   }
 }
