@@ -61,7 +61,7 @@ This repository contains Terraform configurations for managing Auth0 resources. 
      - Body:
        ```json
        {
-         "token_lifetime": <new_token_lifetime_value>
+         "token_lifetime": <new-token-lifetime-value>
        }
        ```  
 ---
