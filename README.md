@@ -25,5 +25,45 @@ This repository contains Terraform configurations for managing Auth0 resources. 
   - `AUTH0_CLIENT_SECRET`
 
 ---
+## How to update API access token value in Auth0 using Postman
+1. **Get an access token using an app (client) that is authorized to access Auth0 Management API**: Use Postman to send a POST request to the Auth0 token endpoint with your client credentials.
+   - URL: `https://<your-auth0-domain>/oauth/token`
+   - Method: `POST`
+   - Headers: 
+     - `Content-Type: application/json`
+   - Body: 
+     ```json
+     {
+       "client_id": "<your-client-id>",
+       "client_secret": "<your-client-secret>",
+       "audience": "https://<your-auth0-domain>/api/v2/",
+       "grant_type": "client_credentials"
+     }
+     ```
+
+     The response will include an `access_token` field. **Example** response:
+      ```json
+      {
+         "access_token": "<your-access-token>",
+         "expires_in": 86400,
+         "scope": "read:resource_servers update:resource_servers",
+         "token_type": "Bearer"
+      }
+      ```
+
+2. **Use the Access Token to update token_lifetime**: Use the access token in the Authorization header to send a PATCH request to the Auth0 Management API.
+   - Example API call:
+     - URL: `https://<your-auth0-domain>/api/v2/resource-servers/<TARGET_API_IDENTIFIER>`
+     - Method: `PATCH`
+     - Headers:
+     - `Content-Type: application/json`
+     - `Authorization: Bearer <your-access-token>`
+     - Body:
+       ```json
+       {
+         "token_lifetime": <new_token_lifetime_value>
+       }
+       ```  
+---
 ## Links:
 - [Terraform / Auth0 / Getting started](https://registry.terraform.io/providers/auth0/auth0/latest/docs/guides/quickstart)
