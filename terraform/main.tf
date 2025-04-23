@@ -2,7 +2,9 @@ terraform {
   required_providers {
     auth0 = {
       source  = "auth0/auth0"
-      version = ">= 1.16.0" # Refer to docs for latest version
+      # TODO: Consider pinning it to a specific version (e.g., `~> 1.16.0`) 
+      # to avoid unexpected breaking changes in future releases.
+      version = ">= 1.16.0" 
     }
   }
 }
@@ -14,8 +16,8 @@ provider "auth0" {
 }
 
 resource "auth0_resource_server" "employee_management_api" {
-  name            = "EmployeeManagementAPI"
-  identifier      = "EmployeeManagementAPI"
-  token_lifetime = 86400
+  name            = var.resource_api_name
+  identifier      = var.resource_api_identifier
+  token_lifetime  = var.api_access_token_lifetime
   skip_consent_for_verifiable_first_party_clients = true
 }
